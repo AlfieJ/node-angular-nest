@@ -1,0 +1,32 @@
+{
+    "name": "nan",
+    "version": "1.0.0",
+    "description": "Empty template for NodeJS/Angular/NestJS app",
+    "main": "index.js",
+    "scripts": {
+        "start:ui": "npm start --prefix ./ui",
+        "start:server": "npm start --prefix ./server",
+        "start": "concurrently -n client-side,server-side \"npm run start:ui\" \"npm run start:server\"",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "clean:all": "npm run clean:all:ui && npm run clean:all:server && npm run clean:all:shared && rm -rf node_modules package-lock.json",
+        "clean:all:ui": "rm -rf client/node_modules client/package-lock.json",
+        "clean:all:server": "rm -rf server/dist server/node_modules server/package-lock.json",
+        "clean:all:shared": "rm -rf shared/entities/dist shared/entities/node_modules shared/entities/package-lock.json",
+        "postinstall": "npm run postinstall:ui && npm run postinstall:server && npm run postinstall:shared",
+        "postinstall:ui": "npm install --prefix ./client",
+        "postinstall:server": "npm install --prefix ./server",
+        "postinstall:shared": "npm install --prefix ./shared/entities"
+    },
+    "keywords": [
+        "typescript",
+        "angular",
+        "nestjs"
+    ],
+    "author": "Alfie Johnson",
+    "license": "MIT",
+    "devDependencies": {
+        "concurrently": "^5.3.0",
+        "lice-js": "^0.2.0",
+        "prettier": "^2.2.1"
+    }
+}
